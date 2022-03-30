@@ -31,8 +31,6 @@ Public Class FrmMain
                 FartLength = GetExtendedFileProperty(AppDomain.CurrentDomain.BaseDirectory & "Long Fart.wav", "Length")
         End Select
 
-        PbrFartDuration.Value = PbrFartDuration.Value + 100 / CInt(Strings.Right(FartLength, 1))
-
     End Sub
 
     Private Sub BtnFart1_Click(sender As Object, e As EventArgs) Handles BtnFart1.Click
