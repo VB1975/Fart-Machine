@@ -31,8 +31,6 @@ Public Class FrmMain
                 FartLength = GetExtendedFileProperty(AppDomain.CurrentDomain.BaseDirectory & "Long Fart.wav", "Length")
         End Select
 
-        Application.DoEvents()
-
     End Sub
 
     Private Sub BtnFart1_Click(sender As Object, e As EventArgs) Handles BtnFart1.Click
@@ -63,29 +61,31 @@ Public Class FrmMain
 
         Try
 
-            Dim X As Double = 100 / CInt(Strings.Right(FartLength, 1))
+            Dim X As Double = PbrFartDuration.Maximum / Val(Strings.Right(FartLength, 1))
 
             TxtCounter.Text += 1
-            If PbrFartDuration.Value < 100 Then
+            If PbrFartDuration.Value < PbrFartDuration.Maximum Then
                 PbrFartDuration.Value += X - 1
-            End If
-
-            If Val(TxtCounter.Text) = Val(Strings.Right(FartLength, 1)) Then
-                If PbrFartDuration.Value < 100 Then PbrFartDuration.Value = 100
             End If
 
         Catch ex As Exception
 
         Finally
 
-            If Val(TxtCounter.Text) = Val(Strings.Right(FartLength, 1)) + 1 Then
+            If Val(TxtCounter.Text) = Val(Strings.Right(FartLength, 1)) Then
+                If PbrFartDuration.Value < PbrFartDuration.Maximum Then
+                    PbrFartDuration.Value = PbrFartDuration.Maximum
+                End If
+            End If
+
+            If Val(TxtCounter.Text) >= Val(Strings.Right(FartLength, 1)) + 1 Then
                 PicFartImage.Image = Nothing
-                LblPic2.Visible = True
-                TimFartLength.Enabled = False
                 LblPic1.Visible = True
+                LblPic2.Visible = True
+                PbrFartDuration.Visible = False
+                TimFartLength.Enabled = False
                 PbrFartDuration.Value = 0
                 TxtCounter.Text = 0
-                PbrFartDuration.Visible = False
             End If
 
         End Try
