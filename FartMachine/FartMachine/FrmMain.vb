@@ -66,7 +66,9 @@ Public Class FrmMain
             Dim X As Double = 100 / CInt(Strings.Right(FartLength, 1))
 
             TxtCounter.Text += 1
-            PbrFartDuration.Value = PbrFartDuration.Value + X
+            If PbrFartDuration.Value < 100 Then
+                PbrFartDuration.Value = PbrFartDuration.Value + X - 1
+            End If
 
         Catch ex As Exception
 
