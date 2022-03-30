@@ -61,7 +61,7 @@ Public Class FrmMain
 
         Try
 
-            Dim X As Double = 100 / CInt(Strings.Right(FartLength, 1))
+            Dim X As Double = 100 / Strings.Right(FartLength, 1)
 
             TxtCounter.Text += 1
             If PbrFartDuration.Value < 100 Then
@@ -72,11 +72,11 @@ Public Class FrmMain
 
         Finally
 
-            If Val(TxtCounter.Text) = CInt(Strings.Right(FartLength, 1)) Then
+            If Val(TxtCounter.Text) = Strings.Right(FartLength, 1) Then
                 If PbrFartDuration.Value < 100 Then PbrFartDuration.Value = 100
             End If
 
-            If Val(TxtCounter.Text) = CInt(Strings.Right(FartLength, 1) + 1) Then
+            If Val(TxtCounter.Text) = Strings.Right(FartLength, 1) + 1 Then
                 PicFartImage.Image = Nothing
                 LblPic1.Visible = True
                 LblPic2.Visible = True
